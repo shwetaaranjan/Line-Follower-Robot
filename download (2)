@@ -1,0 +1,29 @@
+int leftSensor = 2;
+int rightSensor = 3;
+
+void setup() {
+  pinMode(leftSensor, INPUT);  
+  pinMode(rightSensor, INPUT); 
+  Serial.begin(9600);          
+}
+
+int readLeftSensor() {
+  return digitalRead(leftSensor);  
+}
+
+int readRightSensor() {
+  return digitalRead(rightSensor);  
+}
+
+void loop() {
+  int leftValue = readLeftSensor();  
+  int rightValue = readRightSensor(); 
+
+  
+  Serial.print("Left Sensor: ");
+  Serial.print(leftValue);
+  Serial.print(" Right Sensor: ");
+  Serial.println(rightValue);
+
+  delay(100);  
+}

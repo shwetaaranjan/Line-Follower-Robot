@@ -1,0 +1,73 @@
+int leftSensor = 2;  
+int rightSensor = 3;
+
+int motorLeftForward = 9;
+int motorRightForward = 10;
+
+void setup() {
+  pinMode(leftSensor, INPUT);  
+  pinMode(rightSensor, INPUT); 
+  
+  pinMode(motorLeftForward, OUTPUT);  
+  pinMode(motorRightForward, OUTPUT); 
+
+  Serial.begin(9600);  
+}
+
+void motorForward() {
+  digitalWrite(motorLeftForward, HIGH);  
+  digitalWrite(motorRightForward, HIGH); 
+}
+
+void motorBackward() {
+  digitalWrite(motorLeftForward, LOW);   
+  digitalWrite(motorRightForward, LOW); 
+}
+
+void turnLeft() {
+  digitalWrite(motorLeftForward, LOW);   
+  digitalWrite(motorRightForward, HIGH); 
+}
+
+void turnRight() {
+  digitalWrite(motorLeftForward, HIGH);  
+  digitalWrite(motorRightForward, LOW);  
+}
+
+void stopMotors() {
+  digitalWrite(motorLeftForward, LOW);   
+  digitalWrite(motorRightForward, LOW);  
+}
+
+int readLeftSensor() {
+  return digitalRead(leftSensor); 
+}
+
+int readRightSensor() {
+  return digitalRead(rightSensor);  
+}
+
+void loop() {
+  int leftValue = readLeftSensor();
+  int rightValue = readRightSensor();
+
+  Serial.print("Left Sensor: ");
+  Serial.print(leftValue);
+  Serial.print(" Right Sensor: ");
+  Serial.println(rightValue);
+
+  if (leftValue == HIGH && rightValue == HIGH) {
+    motorForward();  
+  }
+  else if (leftValue == HIGH && rightValue == LOW) {
+    turnRight();     
+  }
+  else if (leftValue == LOW && rightValue == HIGH) {
+    turnLeft();      
+  }
+  else {
+    stopMotors();   
+  }
+
+  delay(100);  
+}

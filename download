@@ -1,0 +1,45 @@
+int motorLeftForward = 9;
+int motorRightForward = 10;
+
+void setup() {
+  pinMode(motorLeftForward, OUTPUT);  
+  pinMode(motorRightForward, OUTPUT); 
+}
+
+void motorForward() {
+  digitalWrite(motorLeftForward, HIGH);  
+  digitalWrite(motorRightForward, HIGH); 
+}
+
+void motorBackward() {
+  digitalWrite(motorLeftForward, LOW);
+  digitalWrite(motorRightForward, LOW);
+}
+
+void turnLeft() {
+  digitalWrite(motorLeftForward, LOW);   
+  digitalWrite(motorRightForward, HIGH); 
+}
+
+void turnRight() {
+  digitalWrite(motorLeftForward, HIGH);  
+  digitalWrite(motorRightForward, LOW);  
+}
+
+void stopMotors() {
+  digitalWrite(motorLeftForward, LOW);   
+  digitalWrite(motorRightForward, LOW);  
+}
+
+void loop() {
+  motorForward();     
+  delay(1000);        
+  motorBackward();    
+  delay(1000);        
+  turnLeft();         
+  delay(1000);        
+  turnRight();        
+  delay(1000);        
+  stopMotors();       
+  delay(1000);        
+}
